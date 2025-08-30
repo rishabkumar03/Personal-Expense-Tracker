@@ -98,6 +98,28 @@ def add_expenses(expenses):
     expenses.append({'amount': amount, 'category': category, 'description': description, 'date': date})
     save_data(expenses)
 
+def update_expense(expenses):
+    list_all_expenses(expenses)
+    index = int(input("Enter the expense number to update: "))
+    if 1 <= index <= len(expenses):
+        amount = float(input("Enter amount to update: "))
+        category = input("Enter category to update: ")
+        description = input("Enter description to update: ")
+        date = input("Enter date to update: ")
+        expenses[index-1] = {'amount': amount, 'category': category, 'description': description, 'date': date}
+        save_data(expenses)
+    else:
+        print("Invalid expense index selected")
+
+def delete_expense(expenses):
+    list_all_expenses(expenses)
+    index = int(input("Enter the expense number to delete: "))
+    if 1 <= index <= len(expenses):
+        del expenses[index-1]
+        save_data(expenses)
+    else:
+        print("Invalid expense index selected")
+
 def list_all_expenses(expenses):
     if not expenses:
         print ("No expenses found")
@@ -116,9 +138,11 @@ def main():
         print("Choose an option from below")
         print("1. List all Expenses")
         print("2. Add an Expense")
-        print("3. Monthly Summaries")
-        print("4. Category Wise Summary") 
-        print("5. Exit")
+        print("3. Update an Expense")
+        print("4. Delete an Expense")
+        print("5. Monthly Summary")
+        print("6. Category Wise Summary") 
+        print("7. Exit")
         choice = input("Enter your choice: ")
 
         match choice: 
@@ -127,10 +151,14 @@ def main():
             case '2':
                 add_expenses(expenses)
             case '3':
-                monthly_expense(expenses)
+                update_expense(expenses)
             case '4':
-                category_wise_monthly_summary(expenses)
+                delete_expense(expenses)
             case '5':
+                monthly_expense(expenses)
+            case '6':
+                category_wise_monthly_summary(expenses)
+            case '7':
                 break
             case _:
                 print("\n Invalid Choice")

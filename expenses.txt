@@ -6,12 +6,6 @@
     "date": "20-08-2025"
   },
   {
-    "amount": 80.0,
-    "category": "Travel",
-    "description": "auto bhada",
-    "date": "26-08-2025"
-  },
-  {
     "amount": 110.0,
     "category": "Food",
     "description": "Treat given by Jyoti",
@@ -21,6 +15,6 @@
     "amount": 70.0,
     "category": "Travel",
     "description": "Home to college and college to home",
-    "date": "03-02-2005"
+    "date": "03-02-2025"
   }
 ]
