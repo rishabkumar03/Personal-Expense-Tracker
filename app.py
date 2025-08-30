@@ -56,6 +56,33 @@ def monthly_expense(expenses):
     print("\n")
     print("*" *70)
     
+def category_wise_monthly_summary(expenses):
+    monthly_data = {}
+
+    for expense in expenses:
+        date_obj = datetime.strptime(expense['date'], "%d-%m-%Y")
+        month_year = date_obj.strftime("%B %Y")
+
+        if month_year not in monthly_data: 
+            monthly_data[month_year] = {"total": 0, "categories": {}}
+
+        monthly_data[month_year]["total"] += expense['amount']
+
+        category = expense['category']
+
+        if category in monthly_data[month_year]["categories"]:
+            monthly_data[month_year]["categories"][category] += expense['amount']
+        else:
+            monthly_data[month_year]["categories"][category] = expense['amount']
+
+    print("\n")
+    print("^^^^^^^^^^^^^^ CATEGORY WISE MONTHLY SUMMARY ^^^^^^^^^^^^^^")
+    for month, data in monthly_data.items():
+        print(f"{month}: ${data['total']:.2f}")
+        for category, amount in data['categories'].items():
+            print(f"{category}: ${amount:.2f}")
+        print("\n")
+    print("*" *70)
 
 # Phase 1: Core functionality
 
@@ -90,7 +117,8 @@ def main():
         print("1. List all Expenses")
         print("2. Add an Expense")
         print("3. Monthly Summaries")
-        print("4. Exit") 
+        print("4. Category Wise Summary") 
+        print("5. Exit")
         choice = input("Enter your choice: ")
 
         match choice: 
@@ -101,6 +129,8 @@ def main():
             case '3':
                 monthly_expense(expenses)
             case '4':
+                category_wise_monthly_summary(expenses)
+            case '5':
                 break
             case _:
                 print("\n Invalid Choice")
