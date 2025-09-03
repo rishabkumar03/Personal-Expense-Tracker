@@ -4,6 +4,7 @@
 # Basic error handling.
 
 import json
+import matplotlib.pyplot as plt
 
 from datetime import datetime
 
@@ -84,6 +85,44 @@ def category_wise_monthly_summary(expenses):
         print("\n")
     print("*" *70)
 
+# Phase 4: GUI (Optional)
+
+# Charts/graphs with matplotlib.
+
+def show_monthly_chart(expenses):
+    if not expenses:
+        print("No expenses to show")
+        return
+    
+    monthly_totals = {}
+
+    for expense in expenses:
+        try:
+            date_obj = datetime.strptime(expense['date'], "%d-%m-%Y")
+            month_year = date_obj.strftime("%B-%Y")
+
+            if month_year in monthly_totals:
+                monthly_totals[month_year] += expense['amount']
+            else:
+                monthly_totals[month_year] = expense['amount']
+        except ValueError:
+            continue
+
+    months = list(monthly_totals.keys())
+    amounts = list(monthly_totals.values())
+
+    plt.figure(figsize=(9,6))
+    plt.bar(months, amounts)
+    plt.title('Monthly Expenses')
+    plt.xlabel('Months')
+    plt.ylabel('Amounts')
+    plt.xticks(rotation=30)
+    plt.tight_layout()
+    plt.show()
+
+    print("\n")
+    print("*"*70)
+
 # Phase 1: Core functionality
 
 # Add expenses with amount, category, description, date,
@@ -141,8 +180,9 @@ def main():
         print("3. Update an Expense")
         print("4. Delete an Expense")
         print("5. Monthly Summary")
-        print("6. Category Wise Summary") 
-        print("7. Exit")
+        print("6. Category Wise Summary")
+        print("7. Monthly Summary Chart") 
+        print("8. Exit")
         choice = input("Enter your choice: ")
 
         match choice: 
@@ -158,7 +198,9 @@ def main():
                 monthly_expense(expenses)
             case '6':
                 category_wise_monthly_summary(expenses)
-            case '7':
+            case '7': 
+                show_monthly_chart(expenses)
+            case '8':
                 break
             case _:
                 print("\n Invalid Choice")
@@ -166,10 +208,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Phase 4: GUI (Optional)
-
-# Charts/graphs with matplotlib.
 
 # Phase 5: Advanced features
 
