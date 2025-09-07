@@ -123,6 +123,28 @@ def show_monthly_chart(expenses):
     print("\n")
     print("*"*70)
 
+def show_category_chart(expenses):
+    if not expenses:
+        print("No expenses to show")
+        return
+    
+    category_totals = {}
+
+    for expense in expenses:
+        category = expense['category']
+        if category in category_totals:
+            category_totals[category] += expense['amount']
+        else: 
+            category_totals[category] = expense['amount']
+
+    categories = list(category_totals.keys())
+    amounts = list(category_totals.values())
+
+    plt.figure(figsize=(8,8))
+    plt.pie(amounts, labels=categories, autopct='%1.1f%%')
+    plt.title("Expense by category")
+    plt.show()
+
 # Phase 1: Core functionality
 
 # Add expenses with amount, category, description, date,
@@ -181,8 +203,9 @@ def main():
         print("4. Delete an Expense")
         print("5. Monthly Summary")
         print("6. Category Wise Summary")
-        print("7. Monthly Summary Chart") 
-        print("8. Exit")
+        print("7. Monthly Summary Chart")
+        print("8. Category Summary Chart") 
+        print("9. Exit")
         choice = input("Enter your choice: ")
 
         match choice: 
@@ -201,8 +224,10 @@ def main():
             case '7': 
                 show_monthly_chart(expenses)
             case '8':
+                show_category_chart(expenses)
+            case '9':
                 break
-            case _:
+            case '_':
                 print("\n Invalid Choice")
                 
 

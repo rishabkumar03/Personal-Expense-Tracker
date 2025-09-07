@@ -2,7 +2,7 @@
   {
     "amount": 20.0,
     "category": "Travel",
-    "description": "auto bhada up & down",
+    "description": "Home to Radha Nagar and vice-versa",
     "date": "20-08-2025"
   },
   {
@@ -12,9 +12,9 @@
     "date": "30-08-2025"
   },
   {
-    "amount": 70.0,
+    "amount": 20.0,
     "category": "Travel",
-    "description": "Home to college and college to home",
-    "date": "03-02-2025"
+    "description": "Home to Title with birthday boy Aryan",
+    "date": "06-09-2025"
   }
 ]
