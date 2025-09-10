@@ -16,5 +16,11 @@
     "category": "Travel",
     "description": "Home to Title with birthday boy Aryan",
     "date": "06-09-2025"
+  },
+  {
+    "amount": 180.0,
+    "category": "Food",
+    "description": "Chicken Biryani by Sumit",
+    "date": "10-09-2025"
   }
 ]

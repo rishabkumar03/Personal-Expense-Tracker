@@ -5,6 +5,7 @@
 
 import json
 import matplotlib.pyplot as plt
+import csv
 
 from datetime import datetime
 
@@ -145,6 +146,35 @@ def show_category_chart(expenses):
     plt.title("Expense by category")
     plt.show()
 
+# Phase 5: Advanced features
+
+# Export to CSV,
+# Recurring expenses,
+# Multiple accounts.
+
+def export_to_csv(expenses):
+    if not expenses:
+        print("No expenses to export.")
+        return
+    
+    try:
+        with open ('expenses_export.csv', 'w', newline='', encoding='UTF-8') as file:
+            fieldnames = ['Amount', 'Category', 'Description', 'Date']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+            writer.writeheader()
+
+            for expense in expenses:
+                writer.writerow({
+                    'Amount': expense['amount'],
+                    'Category': expense['category'],
+                    'Description': expense['description'],
+                    'Date': expense['date']
+                })
+            print("Data exported to 'expenses_export.csv' successfully!")
+    except Exception as e:
+        print(f"Error exporting to excel {e}")
+
 # Phase 1: Core functionality
 
 # Add expenses with amount, category, description, date,
@@ -204,8 +234,9 @@ def main():
         print("5. Monthly Summary")
         print("6. Category Wise Summary")
         print("7. Monthly Summary Chart")
-        print("8. Category Summary Chart") 
-        print("9. Exit")
+        print("8. Category Summary Chart")
+        print("9. Export to CSV") 
+        print("10. Exit")
         choice = input("Enter your choice: ")
 
         match choice: 
@@ -226,6 +257,8 @@ def main():
             case '8':
                 show_category_chart(expenses)
             case '9':
+                export_to_csv(expenses)
+            case '10':
                 break
             case '_':
                 print("\n Invalid Choice")
@@ -233,9 +266,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# Phase 5: Advanced features
-
-# Export to CSV/Excel,
-# Recurring expenses,
-# Multiple accounts.
