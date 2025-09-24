@@ -256,7 +256,7 @@ def list_all_recurring_data(recurring_expenses):
 
 def process_recurring_data(expenses, recurring_expenses):
     if not recurring_expenses:
-        return
+        return expenses
     
     today = datetime.now()
     current_day = today.day

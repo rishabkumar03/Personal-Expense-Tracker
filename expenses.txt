@@ -18,9 +18,9 @@
     "date": "06-09-2025"
   },
   {
-    "amount": 180.0,
-    "category": "Food",
-    "description": "Chicken Biryani by Sumit",
-    "date": "10-09-2025"
+    "amount": 20.0,
+    "category": "Travel",
+    "description": "Home to Titli carrying birthday boy Aryan",
+    "date": "06-09-2025"
   }
 ]
